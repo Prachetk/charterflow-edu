@@ -1,296 +1,240 @@
-/**
- * Landing Page - CharterFlow Edu
- * 
- * Features Apple-level animations:
- * - Parallax hero section
- * - Staggered text reveals
- * - Scroll-linked animations
- * - Animated stat counters
- * - Interactive pricing cards
- * 
- * Educational Note: This page demonstrates how to compose multiple
- * animation components and hooks to create a cohesive, premium experience.
- */
-
 import { motion } from "framer-motion";
-import {
-  ScrollReveal,
-  ScrollRevealGroup,
-  ParallaxSection,
-  AnimatedButton,
-  AnimatedCounter,
-  StatCard,
-  LoadingSpinner,
-} from "@/components/animations";
-import { useStaggerAnimation } from "@/hooks/animations";
-import { easing, duration } from "@/lib/easing";
 
-export default function Landing() {
-  const { containerVariants, itemVariants } = useStaggerAnimation(0.1, 0.05);
+const floatingPaws = [
+  { left: "8%", top: "20%", delay: 0, size: "text-3xl", rotate: -18 },
+  { left: "16%", top: "78%", delay: 1.1, size: "text-2xl", rotate: 20 },
+  { left: "78%", top: "15%", delay: 0.6, size: "text-2xl", rotate: 12 },
+  { left: "88%", top: "74%", delay: 1.6, size: "text-3xl", rotate: -10 },
+  { left: "48%", top: "9%", delay: 2.1, size: "text-xl", rotate: 14 },
+];
 
+const whiskers = [
+  "top-25 left-8 -rotate-8",
+  "top-31 left-7 rotate-2",
+  "top-25 right-8 rotate-8",
+  "top-31 right-7 -rotate-2",
+];
+
+function TurkishAngoraCat() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Hero Section with Parallax */}
-      <ParallaxSection
-        backgroundColor="#1A1612"
-        intensity={0.3}
-        minHeight="100vh"
-        className="flex items-center justify-center"
+    <motion.div
+      className="relative mx-auto h-86 w-86 sm:h-[28rem] sm:w-[28rem]"
+      initial={{ opacity: 0, scale: 0.86, y: 24 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 90, damping: 14, delay: 0.15 }}
+      aria-label="Animated white Turkish Angora cat playing with yarn"
+      role="img"
+    >
+      <motion.div
+        className="absolute left-11 top-4 rounded-full bg-white/85 px-4 py-2 text-sm font-black text-rose-500 shadow-lg ring-1 ring-white"
+        animate={{ y: [0, -10, 0], rotate: [-6, 4, -6] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      >
+        purr...
+      </motion.div>
+
+      <motion.div
+        className="absolute right-13 top-16 rounded-full bg-white/85 px-4 py-2 text-sm font-black text-violet-500 shadow-lg ring-1 ring-white"
+        animate={{ y: [0, -8, 0], rotate: [5, -5, 5] }}
+        transition={{
+          duration: 2.7,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.4,
+        }}
+      >
+        meow!
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-13 left-7 h-19 w-19 rounded-full bg-gradient-to-br from-rose-300 via-pink-400 to-violet-400 shadow-xl shadow-pink-300/40"
+        animate={{ x: [0, 16, -6, 0], rotate: [0, 40, -18, 0] }}
+        transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <span className="absolute left-2 top-8 h-1 w-15 rounded-full bg-white/55 rotate-12" />
+        <span className="absolute left-4 top-5 h-1 w-12 rounded-full bg-white/45 -rotate-35" />
+        <span className="absolute left-5 top-12 h-1 w-10 rounded-full bg-white/50 rotate-42" />
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-21 left-22 h-1 w-30 origin-left rounded-full bg-pink-300"
+        animate={{ scaleX: [0.86, 1.08, 0.92], rotate: [8, -8, 8] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <motion.div
+        className="absolute left-1/2 top-18 h-66 w-58 -translate-x-1/2 rounded-[48%_48%_42%_42%] bg-white shadow-[0_28px_70px_rgba(124,58,237,0.18)] ring-1 ring-violet-100"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       >
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-center text-white max-w-4xl mx-auto px-4"
-        >
-          <motion.h1
-            variants={itemVariants}
-            className="text-5xl md:text-7xl font-bold mb-6 font-serif"
-          >
-            Master ACCA Exams
-          </motion.h1>
+          className="absolute -left-7 top-6 h-26 w-24 -rotate-28 rounded-[70%_30%_55%_45%] bg-white shadow-lg ring-1 ring-violet-100"
+          animate={{ rotate: [-28, -22, -28] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="absolute -left-2 top-10 h-14 w-12 -rotate-25 rounded-[70%_30%_55%_45%] bg-rose-100/80" />
+        <motion.div
+          className="absolute -right-7 top-6 h-26 w-24 rotate-28 rounded-[30%_70%_45%_55%] bg-white shadow-lg ring-1 ring-violet-100"
+          animate={{ rotate: [28, 20, 28] }}
+          transition={{
+            duration: 3.1,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.3,
+          }}
+        />
+        <div className="absolute -right-2 top-10 h-14 w-12 rotate-25 rounded-[30%_70%_45%_55%] bg-rose-100/80" />
 
-          <motion.p
-            variants={itemVariants}
-            className="text-xl md:text-2xl text-gray-300 mb-8 font-light"
-          >
-            Premium exam preparation platform designed for Indian students
-          </motion.p>
-
+        <div className="absolute left-9 top-25 h-9 w-10 rounded-full bg-emerald-300 shadow-inner">
           <motion.div
-            variants={itemVariants}
-            className="flex gap-4 justify-center flex-wrap"
-          >
-            <AnimatedButton variant="primary" size="lg">
-              Start Learning
-            </AnimatedButton>
-            <AnimatedButton variant="outline" size="lg">
-              Watch Demo
-            </AnimatedButton>
-          </motion.div>
-        </motion.div>
-      </ParallaxSection>
-
-      {/* Statistics Section */}
-      <section className="py-20 px-4 bg-white">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-6xl mx-auto"
-        >
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl font-bold text-center mb-16 text-gray-900"
-          >
-            Trusted by Thousands
-          </motion.h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <StatCard
-              label="Active Students"
-              value={5000}
-              suffix="+"
-              icon="👥"
-              description="Learning with CharterFlow"
-            />
-            <StatCard
-              label="Success Rate"
-              value={95}
-              suffix="%"
-              icon="✓"
-              description="Students pass their exams"
-            />
-            <StatCard
-              label="Study Hours"
-              value={100000}
-              suffix="+"
-              icon="⏱"
-              description="Completed on platform"
-            />
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl font-bold text-center mb-16 text-gray-900"
-          >
-            Why Choose CharterFlow
-          </motion.h2>
-
-          <ScrollRevealGroup animation="slideUp" staggerDelay={0.15}>
-            {[
-              {
-                title: "Live Classes",
-                description: "Interactive sessions with expert ACCA instructors",
-                icon: "🎓",
-              },
-              {
-                title: "Practice Tests",
-                description: "Unlimited mock exams with detailed solutions",
-                icon: "📝",
-              },
-              {
-                title: "Study Materials",
-                description: "Comprehensive notes and video lectures",
-                icon: "📚",
-              },
-              {
-                title: "Progress Tracking",
-                description: "Real-time analytics and performance insights",
-                icon: "📊",
-              },
-              {
-                title: "Expert Support",
-                description: "24/7 doubt resolution from ACCA professionals",
-                icon: "💬",
-              },
-              {
-                title: "Flexible Learning",
-                description: "Learn at your own pace, anytime, anywhere",
-                icon: "⚡",
-              },
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                className="p-8 rounded-lg bg-white border border-gray-200 hover:border-amber-600 transition-colors"
-              >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </motion.div>
-            ))}
-          </ScrollRevealGroup>
+            className="absolute left-1/2 top-1/2 h-7 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-900"
+            animate={{ scaleY: [1, 0.12, 1] }}
+            transition={{
+              duration: 5.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              times: [0, 0.08, 0.16],
+            }}
+          />
+          <div className="absolute left-2 top-2 h-2 w-2 rounded-full bg-white" />
         </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl font-bold text-center mb-16 text-gray-900"
-          >
-            Simple, Transparent Pricing
-          </motion.h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Starter",
-                price: "₹999",
-                period: "/month",
-                features: [
-                  "Access to study materials",
-                  "5 mock exams per month",
-                  "Email support",
-                  "Mobile app access",
-                ],
-                highlighted: false,
-              },
-              {
-                name: "Professional",
-                price: "₹1999",
-                period: "/month",
-                features: [
-                  "Everything in Starter",
-                  "Unlimited mock exams",
-                  "Live class access",
-                  "Priority support",
-                  "Performance analytics",
-                ],
-                highlighted: true,
-              },
-              {
-                name: "Premium",
-                price: "₹2999",
-                period: "/month",
-                features: [
-                  "Everything in Professional",
-                  "1-on-1 mentoring",
-                  "Doubt resolution",
-                  "Personalized study plan",
-                  "Exam guarantee",
-                ],
-                highlighted: false,
-              },
-            ].map((plan, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                className={`p-8 rounded-lg border-2 transition-all ${
-                  plan.highlighted
-                    ? "border-amber-600 bg-amber-50 shadow-lg"
-                    : "border-gray-200 bg-white"
-                }`}
-              >
-                {plan.highlighted && (
-                  <div className="inline-block bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4">
-                    Most Popular
-                  </div>
-                )}
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {plan.name}
-                </h3>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold text-amber-600">
-                    {plan.price}
-                  </span>
-                  <span className="text-gray-600">{plan.period}</span>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2 text-gray-700">
-                      <span className="text-amber-600">✓</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <AnimatedButton
-                  variant={plan.highlighted ? "primary" : "outline"}
-                  size="lg"
-                  className="w-full"
-                >
-                  Get Started
-                </AnimatedButton>
-              </motion.div>
-            ))}
-          </div>
+        <div className="absolute right-9 top-25 h-9 w-10 rounded-full bg-sky-300 shadow-inner">
+          <motion.div
+            className="absolute left-1/2 top-1/2 h-7 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-900"
+            animate={{ scaleY: [1, 0.12, 1] }}
+            transition={{
+              duration: 5.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              times: [0, 0.08, 0.16],
+            }}
+          />
+          <div className="absolute left-2 top-2 h-2 w-2 rounded-full bg-white" />
         </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-amber-600 to-amber-700">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto text-center text-white"
+          className="absolute left-1/2 top-40 h-4 w-5 -translate-x-1/2 rounded-[50%_50%_60%_60%] bg-rose-300"
+          animate={{ scale: [1, 1.08, 1] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="absolute left-1/2 top-44 h-8 w-px -translate-x-1/2 bg-slate-300" />
+        <div className="absolute left-[45%] top-50 h-6 w-8 rounded-b-full border-b-2 border-slate-300" />
+        <div className="absolute right-[45%] top-50 h-6 w-8 rounded-b-full border-b-2 border-slate-300" />
+
+        {whiskers.map(classes => (
+          <span
+            key={classes}
+            className={`absolute h-0.5 w-19 rounded-full bg-slate-300 ${classes}`}
+          />
+        ))}
+
+        <motion.div
+          className="absolute left-5 top-48 h-8 w-7 rounded-full bg-rose-100"
+          animate={{ opacity: [0.5, 0.9, 0.5] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute right-5 top-48 h-8 w-7 rounded-full bg-rose-100"
+          animate={{ opacity: [0.5, 0.9, 0.5] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-12 left-29 h-22 w-15 rounded-full bg-white shadow-xl ring-1 ring-violet-100"
+        animate={{ rotate: [-12, 16, -12], y: [0, -14, 0] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="absolute bottom-3 left-3 h-2 w-2 rounded-full bg-rose-200" />
+        <div className="absolute bottom-4 left-7 h-2 w-2 rounded-full bg-rose-200" />
+        <div className="absolute bottom-8 left-5 h-5 w-6 rounded-full bg-rose-200" />
+      </motion.div>
+      <motion.div
+        className="absolute bottom-12 right-24 h-22 w-15 rounded-full bg-white shadow-xl ring-1 ring-violet-100"
+        animate={{ rotate: [5, -4, 5], y: [0, -3, 0] }}
+        transition={{
+          duration: 3.4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.2,
+        }}
+      >
+        <div className="absolute bottom-3 left-3 h-2 w-2 rounded-full bg-rose-200" />
+        <div className="absolute bottom-4 left-7 h-2 w-2 rounded-full bg-rose-200" />
+        <div className="absolute bottom-8 left-5 h-5 w-6 rounded-full bg-rose-200" />
+      </motion.div>
+
+      <motion.div
+        className="absolute -right-1 top-39 h-35 w-31 rounded-[50%] border-[18px] border-white border-b-transparent border-l-transparent shadow-[14px_-10px_25px_rgba(255,255,255,0.9)]"
+        animate={{ rotate: [4, 18, 4], x: [0, 5, 0] }}
+        transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+      />
+    </motion.div>
+  );
+}
+
+export default function Landing() {
+  return (
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top,#fff7ad_0,#ffd6ec_28%,#e9e7ff_58%,#f8fafc_100%)] px-6 py-10 text-slate-950">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.38)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.38)_1px,transparent_1px)] bg-[size:44px_44px]" />
+      <div className="absolute -left-24 top-16 h-80 w-80 rounded-full bg-rose-300/35 blur-3xl" />
+      <div className="absolute -right-24 bottom-10 h-96 w-96 rounded-full bg-violet-300/40 blur-3xl" />
+
+      {floatingPaws.map(paw => (
+        <motion.span
+          key={`${paw.left}-${paw.top}`}
+          className={`pointer-events-none absolute ${paw.size}`}
+          style={{ left: paw.left, top: paw.top }}
+          initial={{ opacity: 0, y: 22, rotate: paw.rotate }}
+          animate={{
+            opacity: [0.16, 0.56, 0.16],
+            y: [0, -18, 0],
+            rotate: [paw.rotate, paw.rotate + 8, paw.rotate],
+          }}
+          transition={{
+            duration: 4.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: paw.delay,
+          }}
         >
-          <h2 className="text-4xl font-bold mb-6">Ready to Excel?</h2>
-          <p className="text-xl mb-8 text-amber-50">
-            Join thousands of students preparing for ACCA success
-          </p>
-          <AnimatedButton variant="outline" size="lg">
-            Start Your Free Trial
-          </AnimatedButton>
+          🐾
+        </motion.span>
+      ))}
+
+      <section className="relative z-10 flex w-full max-w-5xl flex-col items-center text-center">
+        <motion.p
+          className="mb-4 rounded-full border border-white/70 bg-white/65 px-5 py-2 text-sm font-black uppercase tracking-[0.34em] text-violet-500 shadow-sm backdrop-blur"
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          tiny paws at work
+        </motion.p>
+
+        <motion.h1
+          className="font-serif text-6xl font-black leading-none tracking-tight sm:text-7xl lg:text-8xl"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, ease: "easeOut", delay: 0.08 }}
+        >
+          Launching soon
+        </motion.h1>
+
+        <motion.div
+          className="relative mt-8 w-full max-w-2xl rounded-[3rem] border border-white/75 bg-white/42 p-4 shadow-2xl shadow-violet-200/50 backdrop-blur md:p-8"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.16 }}
+        >
+          <motion.div
+            className="absolute inset-x-16 bottom-5 h-24 rounded-[100%] bg-violet-300/35 blur-2xl"
+            animate={{ scale: [1, 1.08, 1], opacity: [0.55, 0.85, 0.55] }}
+            transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <TurkishAngoraCat />
         </motion.div>
       </section>
-    </div>
+    </main>
   );
 }
